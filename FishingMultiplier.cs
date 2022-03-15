@@ -54,6 +54,8 @@ namespace Oxide.Plugins
 
         private int GetMultiplier(Dictionary<string, int> dict, string shortname)
         {
+            if (dict == null) return 1;
+
             if (dict.ContainsKey(shortname))
                 return dict[shortname];
 
@@ -65,12 +67,15 @@ namespace Oxide.Plugins
 
         private int GetMultiplier(string shortname, CatchTypes type)
         {
-            switch (type)
+            if (_config != null && _config.Multipliers != null)
             {
-                case CatchTypes.FishTrap:
-                    return GetMultiplier(_config.Multipliers.FishTrapsMultipler, shortname);
-                case CatchTypes.Rod:
-                    return GetMultiplier(_config.Multipliers.RodMultipler, shortname);
+                switch (type)
+                {
+                    case CatchTypes.FishTrap:
+                        return GetMultiplier(_config.Multipliers.FishTrapsMultipler, shortname);
+                    case CatchTypes.Rod:
+                        return GetMultiplier(_config.Multipliers.RodMultipler, shortname);
+                }
             }
 
             return 1;
