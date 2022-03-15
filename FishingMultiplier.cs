@@ -1,5 +1,3 @@
-#define DEBUG
-
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -46,16 +44,7 @@ namespace Oxide.Plugins
             if (!(container.entityOwner is WildlifeTrap)) return;
             if (!_trapMultipliers.ContainsKey(container.entityOwner.net.ID)) return;
 
-#if DEBUG
-            Puts("Amount before: {0}", item.amount);
-#endif
-
             item.amount *= _trapMultipliers[container.entityOwner.net.ID];
-
-#if DEBUG
-            Puts("Amount after: {0}", item.amount);
-#endif
-
             _trapMultipliers.Remove(container.entityOwner.net.ID);
         }
 
