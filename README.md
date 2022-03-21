@@ -1,10 +1,6 @@
-# Fishing Multiplier
-
 Allows to apply a multiplier on fishing with fishing rod or using a fish trap.
 
 ## Configuration
-
-Example Configuration file.
 
 ```json
 {
