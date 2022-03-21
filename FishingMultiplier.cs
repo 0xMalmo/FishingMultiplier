@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Oxide.Plugins
 {
-    [Info("Fishing Multiplier", "Malmo", "1.0.0")]
+    [Info("Fishing Multiplier", "Malmo", "1.0.2")]
     [Description("Multiplies the amount of fish caught with rod or traps")]
     class FishingMultiplier : RustPlugin
     {
