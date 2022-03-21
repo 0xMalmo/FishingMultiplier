@@ -21,22 +21,18 @@ namespace Oxide.Plugins
             _config = Config.ReadObject<ConfigData>();
         }
 
-        private Item OnFishCatch(Item item, BaseFishingRod rod, BasePlayer player)
+        private void OnFishCatch(Item item, BaseFishingRod rod, BasePlayer player)
         {
             var multiplier = GetMultiplier(item.info.shortname, CatchTypes.Rod);
             item.amount *= multiplier;
-
-            return null;
         }
 
-        private object OnWildlifeTrap(WildlifeTrap trap, TrappableWildlife trapped)
+        private void OnWildlifeTrap(WildlifeTrap trap, TrappableWildlife trapped)
         {
             var multiplier = GetMultiplier(trapped.inventoryObject.shortname, CatchTypes.FishTrap);
 
             if (multiplier > 1)
                 _trapMultipliers.Add(trap.net.ID, multiplier);
-
-            return null;
         }
 
         void OnItemAddedToContainer(ItemContainer container, Item item)
