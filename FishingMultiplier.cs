@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Oxide.Plugins
 {
-    [Info("Fishing Multiplier", "Malmo", "1.0.2")]
+    [Info("Fishing Multiplier", "Malmo", "1.0.3")]
     [Description("Multiplies the amount of fish caught with rod or traps")]
     class FishingMultiplier : RustPlugin
     {
@@ -27,22 +27,22 @@ namespace Oxide.Plugins
             item.amount *= multiplier;
         }
 
-        private void OnWildlifeTrap(WildlifeTrap trap, TrappableWildlife trapped)
-        {
-            var multiplier = GetMultiplier(trapped.inventoryObject.shortname, CatchTypes.FishTrap);
+        // private void OnWildlifeTrap(WildlifeTrap trap, TrappableWildlife trapped)
+        // {
+        //     var multiplier = GetMultiplier(trapped.inventoryObject.shortname, CatchTypes.FishTrap);
 
-            if (multiplier > 1)
-                _trapMultipliers.Add(trap.net.ID, multiplier);
-        }
+        //     if (multiplier > 1)
+        //         _trapMultipliers.Add(trap.net.ID, multiplier);
+        // }
 
-        void OnItemAddedToContainer(ItemContainer container, Item item)
-        {
-            if (!(container.entityOwner is WildlifeTrap)) return;
-            if (!_trapMultipliers.ContainsKey(container.entityOwner.net.ID)) return;
+        // void OnItemAddedToContainer(ItemContainer container, Item item)
+        // {
+        //     if (!(container.entityOwner is WildlifeTrap)) return;
+        //     if (!_trapMultipliers.ContainsKey(container.entityOwner.net.ID)) return;
 
-            item.amount *= _trapMultipliers[container.entityOwner.net.ID];
-            _trapMultipliers.Remove(container.entityOwner.net.ID);
-        }
+        //     item.amount *= _trapMultipliers[container.entityOwner.net.ID];
+        //     _trapMultipliers.Remove(container.entityOwner.net.ID);
+        // }
 
         #endregion
 
